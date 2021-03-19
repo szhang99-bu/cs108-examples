@@ -1,0 +1,35 @@
+<!-- mini_fb/home.html -->
+<head>
+    <title>MiniFacebook</title>
+</head>
+<h1> MiniFacebook</h1>
+<h2>Showing all Profiles</h2>
+<!-- display the context data -->
+<!-- quote is an invalid template variable name!
+{{quote}}
+-->
+<ul>
+<table width=700>
+    <colgrou>
+        <col span="1" style="width: 42%;">
+        <col span="1" style="width: 42%;">
+        <col span="1" style="width: 16%;">
+    </colgrou>
+    <tr>
+        <th>Name</th>
+        <th>Hometown</th>
+        <th>Image</th>
+    </tr>
+<!-- create a loop to displate the quotes -->
+{% for profile in profiles %}
+<tr>
+    <td>{{profile.first_name}} {{profile.last_name}}</td>
+    <td>
+        {{profile.city}}
+    </td>
+    <td>
+        <img src = "{{profile.image_url}}" style = "max-width: 125; max-height: 250;">
+    </td>
+</tr>
+{% endfor %}
+</ul>
