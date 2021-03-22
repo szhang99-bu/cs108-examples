@@ -9,8 +9,8 @@
 <ul>
 <!-- create a loop to displate the quotes -->
 {% for quote in quotes %}
-    <li>{{quote.text}} - {{quote.author}}<hr>
-        <img src = "{{quote.image_url}}" style = "max-width: 400;">
+    <li>{{quote.text}} - {{quote.person}}<hr>
+        <img src = "{{quote.person.get_random_image}}" style = "max-width: 400;">
 
     </li>
 {% endfor %}

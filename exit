@@ -1,0 +1,47 @@
+[33mcommit a79f5b60c786056331859fa329d293d7cbf736c6[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Shiyu Zhang <szhang99@bu.edu>
+Date:   Sun Mar 21 23:47:43 2021 -0400
+
+    Quotes app: added DetailView to show one quote.
+
+[33mcommit e58ce3a2fdb2e070c874004f1cb1aad6640b9d24[m
+Author: Shiyu Zhang <szhang99@bu.edu>
+Date:   Fri Mar 19 16:19:45 2021 -0400
+
+    Added mini_fb_url.txt
+
+[33mcommit e1dc98d90a2596875fbaffcfd014961b1c3196bd[m[33m ([m[1;31mheroku/master[m[33m)[m
+Author: Shiyu Zhang <szhang99@bu.edu>
+Date:   Fri Mar 19 16:15:54 2021 -0400
+
+    Added views and template for mini_fb
+
+[33mcommit 6935ba6a5fd020d14655a4a03e4784ef420c4355[m
+Author: Shiyu Zhang <szhang99@bu.edu>
+Date:   Wed Mar 17 04:33:26 2021 -0400
+
+    Added a15_url.txt
+
+[33mcommit 88d1566dfb23c6998bfa25a4ecccfd0112c4c983[m
+Author: Shiyu Zhang <szhang99@bu.edu>
+Date:   Wed Mar 17 04:28:02 2021 -0400
+
+    Created Quotes app; initial model design
+
+[33mcommit faa9017a3ca3810ede2bbefbb4b58e4e2f336008[m
+Author: Shiyu Zhang <szhang99@bu.edu>
+Date:   Wed Mar 17 03:31:07 2021 -0400
+
+    Started pages Application
+
+[33mcommit d54912687a64df4b4946c736c2e56cd400cbbf66[m[33m ([m[1;31morigin/main[m[33m, [m[1;31mheroku/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: Shiyu Zhang <szhang99@bu.edu>
+Date:   Mon Mar 15 00:15:50 2021 -0400
+
+    New updates for Heroku deployment
+
+[33mcommit 85056936cd86a84b7401b65771ef910960683e9b[m
+Author: Shiyu Zhang <szhang99@bu.edu>
+Date:   Sun Mar 14 23:58:04 2021 -0400
+
+    Initial commit
