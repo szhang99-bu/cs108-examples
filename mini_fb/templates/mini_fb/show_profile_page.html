@@ -23,4 +23,29 @@
 
     </tr>
 </table>
+
+<h2> Status Messages</h2>
+
+<table>
+    <colgrou>
+        <col span="1" style="width: 40%;">
+        <col span="1" style="width: 60%;">
+    </colgrou>
+    <tr>
+        <th>Time</th>
+        <th>Message</th>
+
+    </tr>
+<!-- create a loop to displate the profiles -->
+{% for profile in profiles.get_status_messages %}
+<tr>
+    <td>
+        {{profile.timestamp}}
+    </td>
+    <td>
+        {{profile.message}}
+    </td>
+</tr>
+{% endfor %}
+</table>
 {% endblock %}
