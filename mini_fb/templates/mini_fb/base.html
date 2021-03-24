@@ -1,0 +1,19 @@
+<!-- mini_fb/base.html-->
+
+<html>
+    <head>
+        <title>Mini Facebook</title>
+    </head>
+    <body>
+    <!-- navigation links -->
+    <h1> MiniFacebook</h1>
+    <header>
+        <a href="{% url 'home_page' %}">Home</a> 
+    </header>
+    <!-- This content block will be filled in by another template
+         which extends this base.html page.-->
+    {% block content %}
+    {% endblock %}
+
+    </body>
+</html>

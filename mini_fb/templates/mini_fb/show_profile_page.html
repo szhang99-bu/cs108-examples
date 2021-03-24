@@ -1,0 +1,26 @@
+<!--mini_fb/show_profile_page.html-->
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+<table> <!-- us a table to make the profile look prettier-->
+    <tr>
+        <th>{{profiles.first_name}} {{profiles.last_name}}</th>
+    </tr>
+    <tr>
+        <td>
+            <img src = "{{profiles.image_url}}" style = "max-width: 600; max-height: 600;">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {{profiles.email}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {{profiles.city}}
+        </td>
+
+    </tr>
+</table>
+{% endblock %}
