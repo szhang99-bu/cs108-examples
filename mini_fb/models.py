@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -25,6 +26,14 @@ class Profile(models.Model):
 
         #use the object manager to filter Quotes by this person's pk:
         return StatusMessage.objects.filter(profile=self)
+    
+    def get_absolute_url(self):
+        """
+            Provide a url to show this object
+        """
+        # 'quote/<int:pk>'
+        return reverse('show_profile_page', kwargs={'pk':self.pk})
+
 
 class StatusMessage(models.Model):
     """

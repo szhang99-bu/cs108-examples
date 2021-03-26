@@ -1,0 +1,23 @@
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+
+<!-- templates/mini_fb/Creat_profile_form.html -->
+
+<h1>Create a new profile</h1>
+
+<form method ="POST"> <!-- HTTP POST to send data to the server -->
+    {% csrf_token %}
+
+    <!-- {{form}}   display the form contest variable without formating-->
+    <!-- {{form.as_p}}    paragraph stule formatting -->
+    <table>
+    {{form.as_table}}  <!--display the form contest variable with table formating-->
+    <tr>
+        <td></td> <!-- an empty space before the submit button-->
+        <td><input type="submit" value="Creat Profile!"></td>  <!-- The submit button -->
+    </tr>
+    </table>
+</form>
+
+{% endblock %}
