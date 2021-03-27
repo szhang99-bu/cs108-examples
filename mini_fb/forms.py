@@ -34,3 +34,16 @@ class UpdateProfileForm(forms.ModelForm):
         """
         model = Profile #which model to create
         fields = ['first_name', 'last_name', 'birth_date', 'city', 'email', 'image_url']
+
+
+class CreateStatusMessageForm(forms.ModelForm):
+    """
+        a form to create a new quote object
+    """
+
+    class Meta:
+        """
+            Additional data about this form
+        """
+        model = StatusMessage #which model to create
+        fields = ['message']

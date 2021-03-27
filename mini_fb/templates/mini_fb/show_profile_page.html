@@ -50,4 +50,18 @@
 </table>
 
 <h4><a href ="{% url 'update_profile' profiles.pk %}">Edit this profile</a> </h4>
+-------------------------------------------------------------------------------------------
+<form action="{% url 'post_status' profiles.pk %}"method ="POST"> <!-- HTTP POST to send data to the server -->
+    {% csrf_token %}
+
+    <!-- {{form}}   display the form contest variable without formating-->
+    <!-- {{form.as_p}}    paragraph stule formatting -->
+    <table>
+    {{create_status_form}} <!--display the form contest variable with table formating-->
+    <tr>
+        <td></td> <!-- an empty space before the submit button-->
+        <td><input type="submit" value="Post Status Update!"></td>  <!-- The submit button -->
+    </tr>
+    </table>
+</form>
 {% endblock %}
