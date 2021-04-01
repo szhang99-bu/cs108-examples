@@ -40,10 +40,11 @@ class CreateStatusMessageForm(forms.ModelForm):
     """
         a form to create a new quote object
     """
-
+    image = forms.ImageField(label="Image", required=False)
+    
     class Meta:
         """
             Additional data about this form
         """
         model = StatusMessage #which model to create
-        fields = ['message']
+        fields = ['message', 'image']

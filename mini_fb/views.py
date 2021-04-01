@@ -28,10 +28,14 @@ class ShowProfilePageView(DetailView):
 
         # obtain the default context data (a dictionary) from the superclass; 
         # this will include the Profile record to display for this page view
+
         context = super(ShowProfilePageView, self).get_context_data(**kwargs)
+
         # create a new CreateStatusMessageForm, and add it into the context dictionary
+        
         form = CreateStatusMessageForm() 
         context['create_status_form'] = form
+
         # return this context dictionary
         return context
 
@@ -64,21 +68,28 @@ def post_status_message(request, pk):
         # print(request.POST) # for debugging at the console
 
         # create the form object from the request's POST data
-        form = CreateStatusMessageForm(request.POST or None)
+        form = CreateStatusMessageForm(request.POST or None, request.FILES or None)
 
         if form.is_valid():
 
             # create the StatusMessage object with the data in the CreateStatusMessageForm
             status_message = form.save(commit=False) # don't commit to database yet
+            image = form.save(commit=False)
 
             # find the profile that matches the `pk` in the URL
             profile = Profile.objects.get(pk=pk)
 
             # attach FK profile to this status message
             status_message.profile = profile
+            image.profile = profile
 
             # now commit to database
+            #create the image object   
+            image.save()
             status_message.save()
+            
+        else:
+            print("Error: the form was not valid")
 
     # redirect the user to the show_profile_page view
     url = reverse('show_profile_page', kwargs={'pk': pk})

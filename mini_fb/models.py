@@ -41,6 +41,7 @@ class StatusMessage(models.Model):
     """
     timestamp = models.TextField(blank=True)
     message = models.TextField(blank=True)
+    image = models.ImageField(blank=True)
     profile = models.ForeignKey(Profile, on_delete = models.CASCADE)
     
     def __str__(self):
