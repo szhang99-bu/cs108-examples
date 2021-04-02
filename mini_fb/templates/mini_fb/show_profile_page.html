@@ -47,7 +47,8 @@
 <table>
     <colgrou>
         <col span="1" style="width: 40%;">
-        <col span="1" style="width: 60%;">
+        <col span="1" style="width: 50%;">
+        <col span="1" style="width: 10%;">
     </colgrou>
     <tr>
         <th>Time</th>
@@ -55,19 +56,22 @@
 
     </tr>
 <!-- create a loop to displate the profiles -->
-{% for profile in profiles.get_status_messages %}
+{% for status in profiles.get_status_messages %}
 <tr>
     <td>
-        {{profile.timestamp}}
+        {{status.timestamp}}
     </td>
     <td>
-        {{profile.message}} <BR>
-        {% if profile.image %}
-        <img src='{{profile.image.url}}' style='max-width: 200;'>
+        {{status.message}} <BR>
+        {% if status.image %}
+        <img src='{{status.image.url}}' style='max-width: 200;'>
         {% endif %}
     </td>
-
+    <td>
+        <a href ="{% url 'delete_status' profile_pk=profiles.pk status_pk=status.pk %}">Delete</a>
+    </td>
 </tr>
+
 {% endfor %}
 </table>
 
