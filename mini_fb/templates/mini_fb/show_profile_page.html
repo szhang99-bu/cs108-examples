@@ -38,10 +38,38 @@
         </td>
     </tr>
 </table>
-<a href ="{% url 'update_profile' profiles.pk %}">Edit this profile</a><BR>
+<a href ="{% url 'update_profile' profiles.pk %}">Edit this profile</a> | 
+<a href = "{% url 'news_feed' profiles.pk %}">Show {{profiles.first_name}}'s news feed</a> | 
+<a href = "{% url 'show_possible_friends' profiles.pk %}">Show {{profiles.first_name}}'s Possible New Firends</a><BR>
 ----------------------------------------------------------------------------------------------------
 
+<h2>{{profiles.first_name}}'s friends</h2>
+    <table>
+        <tr>
+            <th>Friends</th>
+            <th>Picture</th>
+        </tr>
+        
+        {% if profiles.get_friends %}
+        {% for friend in profiles.get_friends %}
+            <tr>
+                <td>
+                    <a href="{% url 'show_profile_page' friend.pk %}">{{friend.first_name}} {{friend.last_name}}</a>
+                </td>
+                <td>
+                    <img width=250 src="{{friend.image_url}}">
+                </td> 
+            </tr>
+                
+        {% endfor %}
 
+        {% else %}
+            <td>{{profiles.first_name}} doesn't have any friends.</td>
+        {% endif %}
+    </table>
+    <BR>
+
+----------------------------------------------------------------------------------------------------
 <h2> Status Messages</h2>
 
 <table>

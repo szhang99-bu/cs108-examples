@@ -12,6 +12,7 @@ class Profile(models.Model):
     city = models.TextField(blank=True)
     email = models.TextField(blank=True)
     image_url = models.URLField(blank=True)
+    friends = models.ManyToManyField("self")
 
     def __str__(self):
         """
@@ -33,13 +34,38 @@ class Profile(models.Model):
         """
         # 'quote/<int:pk>'
         return reverse('show_profile_page', kwargs={'pk':self.pk})
+    
+    def get_friends(self):
+        """
+            get all friends for each profile
+        """ 
+        return self.friends.all()
+
+    def get_news_feed(self):
+        """
+            will obtain and return the news feed items.
+        """
+        # news = StatusMessage.objects.filter(profile__friends= self.friends).order_by("-timestamp")
+        news = StatusMessage.objects.filter(profile__in = self.get_friends())
+        news_self = StatusMessage.objects.filter(profile = self)
+
+        total_news = news | news_self.order_by("-timestamp")
+        return total_news
+    
+    def get_friend_suggestions(self):
+        """
+        suggest friends to add for users.
+        """
+
+        possible_friends = Profile.objects.exclude(pk__in= self.get_friends())
+        return possible_friends
 
 
 class StatusMessage(models.Model):
     """
         model called StatusMessage, which will model the data attributes of Facebook status message.
     """
-    timestamp = models.TextField(blank=True)
+    timestamp = models.DateTimeField(auto_now=True)
     message = models.TextField(blank=True)
     image = models.ImageField(blank=True)
     profile = models.ForeignKey(Profile, on_delete = models.CASCADE)
@@ -48,4 +74,4 @@ class StatusMessage(models.Model):
         """
             Return a string reoresentation of this quote.
         """
-        return f'{self.message} @ {self.timestamp}'
+        return f'{self.profile}" - {self.message} - {self.timestamp}'

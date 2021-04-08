@@ -142,3 +142,32 @@ def post_status_message(request, pk):
     # redirect the user to the show_profile_page view
     url = reverse('show_profile_page', kwargs={'pk': pk})
     return redirect(url)
+
+class ShowNewsFeedView(DetailView):
+    """
+        It show all the status message for the people itself and friends.
+    """
+    model = Profile 
+    template_name = "mini_fb/show_news_feed.html"
+    context_object_name = "profile"
+
+class ShowPossibleFriendsView(DetailView):
+    """
+        all possible friends view.
+    """
+    model = Profile 
+    template_name = "mini_fb/show_possible_friends.html"
+    context_object_name = "new_friends"
+
+def add_friend(request, profile_pk, friend_pk):
+    """
+        process the request of adding friends.
+    """
+
+    profile_object = Profile.objects.get(pk=profile_pk)
+    friend_object = profile_object.get_friend_suggestions().get(pk=friend_pk)
+    
+    profile_object.friends.add(friend_object)
+    profile_object.save()
+
+    return redirect(reverse('show_profile_page', kwargs={'pk': profile_pk}))
