@@ -1,33 +1,28 @@
-<!-- quotes/delete_quote.html -->
+<!-- mini_fb/delete_status_form.html -->
+{% extends 'mini_fb/base.html' %}
 
-<h3>Are you sure you want to delete this quote?</h3>
+{% block content %}
+
+<h2> Are you sure you want to delete this status message?</h2>
 
 <form method='POST'>
     {% csrf_token %}
-    <input type='submit' name="yes" value="yes">
+    <input type='submit' name="yes" value= "yes">
 </form>
 
-<form method='GET' action="{% url 'show_profile_page' profile.pk %}">
+<form method='GET' action="{% url 'show_profile_page' st_msg.profile.pk %}">
     {% csrf_token %}
-    <input type='submit' name="no" value="no">
+    <input type='submit' name="no" value= "no">
 </form>
-
-<table>
-    <tr>
-        <td>
-            {{status.timestamp}}
-        </td>
-        <td>
-            {{status.message}} <BR>
-            {% if status.image %}
-            <img src='{{status.image.url}}' style='max-width: 200;'>
-            {% endif %}
-        </td>
-
-    </tr>
-</table>
-
 <p>
 
-</p>
 
+</p>
+{{st_msg}}
+{% if st_msg.image %}
+<td><img src='{{st_msg.image.url}}' style='max-width: 200;'></td>
+{% endif %}
+</tr>
+
+
+{% endblock %}
