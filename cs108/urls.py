@@ -25,7 +25,7 @@ urlpatterns = [
     path('pages/', include('pages.urls')),
     path('quotes/', include('quotes.urls')),
     path('mini_fb/', include('mini_fb.urls')),
-
+    path('project/', include('project.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
