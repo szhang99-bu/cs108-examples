@@ -1,1 +1,43 @@
 <!-- final_project/show_all_computer_parts.html -->
+{% extends 'project/base.html' %}
+
+{% block content %}
+<center>
+<h2>Avalible Computer Parts</h2>
+<!-- display All the Possible Computer Parts -->
+
+<!-- create the header of the website right now -->
+<ul>
+<table width=700>
+    <colgrou>
+        <col span="1" style="width: 16%;">
+        <col span="1" style="width: 42%;">
+        <col span="1" style="width: 42%;">
+    </colgrou>
+    <tr>
+        <th>Name</th>
+        <th>Product Image</th>
+        <th>Description</th>
+    </tr>
+
+<!-- create a loop to displate the computer parts that can be traded -->
+{% for part in parts %}
+<tr>
+    <td>
+        <a href="{% url 'show_computer_part_page' part.pk %}">{{part.name}}</a>
+    </td>
+    <td>
+        <center>
+        <a href="{% url 'show_computer_part_page' part.pk %}"><img src = "{{part.image.url}}" style = "max-width: 180; max-height: 250;"></a>
+        </center>
+    </td>
+    <td>
+        <pre>
+{{part.description}}
+        </pre>
+    </td>
+</tr>
+{% endfor %}
+</ul>
+</center>
+{% endblock %}

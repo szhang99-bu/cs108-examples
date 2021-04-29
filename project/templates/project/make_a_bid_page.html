@@ -1,0 +1,23 @@
+<!--project/make_a_bid_page.html-->
+{% extends 'project/base.html' %}
+
+{% block content %}
+
+
+<h1>What Is Your Bid Price?</h1>
+
+<form action="{% url 'make_a_bid_form' parts.pk %}"method ="POST" tag: enctype="multipart/form-data"> <!-- HTTP POST to send data to the server -->
+    {% csrf_token %}
+
+    <!-- {{form}}   display the form contest variable without formating-->
+    <!-- {{form.as_p}}    paragraph stule formatting -->
+    <table>
+    {{create_bid_form}} <!--display the form contest variable with table formating-->
+    <tr>
+        <td></td> <!-- an empty space before the submit button-->
+        <td><input type="submit" value="Make A New Bid"></td>  <!-- The submit button -->
+    </tr>
+    </table>
+
+
+{% endblock %}

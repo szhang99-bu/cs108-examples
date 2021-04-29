@@ -1,0 +1,20 @@
+<!--project/make_an_ask_price.html-->
+{% extends 'project/base.html' %}
+
+{% block content %}
+
+
+<h1>What Is Your Ask Price?</h1>
+
+<form action="{% url 'make_an_ask_form' parts.pk %}"method ="POST" tag: enctype="multipart/form-data"> <!-- HTTP POST to send data to the server -->
+    {% csrf_token %}
+
+    <table>
+    {{create_ask_form}} <!--display the form contest variable with table formating-->
+    <tr>
+        <td></td> <!-- an empty space before the submit button-->
+        <td><input type="submit" value="Place A New Ask"></td>  <!-- The submit button -->
+    </tr>
+    </table>
+    
+{% endblock %}

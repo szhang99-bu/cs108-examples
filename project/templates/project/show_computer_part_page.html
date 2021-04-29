@@ -1,0 +1,177 @@
+<!--project/show_computer_part_page.html-->
+{% extends 'project/base.html' %}
+
+{% block content %}
+<center>
+
+<h1>{{parts.name}}</h1>
+<table width=700>
+    <colgrou>
+        <col span="1" style="width: 40%;">
+        <col span="1" style="width: 60%;">
+    </colgrou>
+    <tr>
+        <td>
+            <img src = "{{parts.image.url}}" style = "max-width: 300; max-height: 120;">
+        </td>
+        <td>
+            <p>
+            <pre>
+<b>Brand:</b> {{parts.manufacturer}}
+<b>Launch Yeat:</b> {{parts.year}}
+<b>Launch Price:</b> ${{parts.original_price}}
+<b>Product Descriptions:</b>
+{{parts.description}}
+            </pre>
+            </p>
+        </td>
+
+</table>
+</center>
+<p>
+
+</p>
+
+<center>
+<table>
+    <colgrou>
+        <col span="1" style="width: 50%;">
+        <col span="1" style="width: 50%;">
+    </colgrou>
+    <tr>
+        <td>
+            <a href ="{% url 'make_a_bid' parts.pk%}">Make A Bid</a>
+        </td>
+        <td>
+            <a href ="{% url 'make_an_ask' parts.pk %}">Make An Ask</a> 
+        </td>
+    </tr>
+</table>
+<p>
+
+</p>
+<!-- Graph representation of the past trading prices-->
+
+<table width= 900>
+    <colgrou>
+        <col span="1" style="width: 50%;">
+        <col span="1" style="width: 50%;">
+    </colgrou>
+    <tr>
+        <th>All Current Bids</th>
+        <th>All Current Asks</th>
+    </tr>
+    <tr>
+        <td>
+            {% if parts.get_all_bids %}
+            <center>
+            <a href ="{% url 'update_a_bid' product_pk=parts.pk bid_pk=parts.get_highest_bid.pk %}">Sell To the Highest Bid</a>
+            </center>
+            {% endif %}
+        </td>
+        <td>
+            {% if parts.get_all_asks %}
+            <center>
+            <a href ="{% url 'update_an_ask' product_pk=parts.pk ask_pk=parts.get_lowest_ask.pk %}">Buy From the Lowest Ask</a>
+            </center>
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            
+                {% if parts.get_all_bids %}
+                <table width=400>
+                    <colgrou>
+                        <col span="1" style="width: 50%;">
+                        <col span="1" style="width: 50%;">
+                    </colgrou>
+                {% for bid in parts.get_all_bids %}
+                <tr>
+                    <td>
+                        {{bid.list_date}}
+                    </td>
+                    <td>
+                        <center>
+                            ${{bid.price}}
+                        </center>
+
+                    </td>
+                </tr>
+                {% endfor %}
+                </table>
+                {% else %}
+                    <center>
+                    <b>Currently No Bids</b>
+                    </center>
+                {% endif %}
+            
+        </td>
+        <td>
+            
+                {% if parts.get_all_asks %}
+                <table width=400>
+                    <colgrou>
+                        <col span="1" style="width: 50%;">
+                        <col span="1" style="width: 50%;">
+                    </colgrou>
+                {% for ask in parts.get_all_asks %}
+                <tr>
+                    <td>
+                        {{ask.list_date}}
+                    </td>
+                    <td>
+                        <center>
+                        ${{ask.price}}
+                        </center>
+                    </td>
+                </tr>
+                {% endfor %}
+                </table>
+                {% else %}
+                    <center>
+                        <b>Currently No Asks</b>
+                    </center>
+                {% endif %}
+            
+        </td>
+    </tr>
+</table>
+</center>
+
+<center>
+
+
+<h3> All Recent Transactions</h3>
+<table width=800>
+    <colgrou>
+        <col span="1" style="width: 50%;">
+        <col span="1" style="width: 50%;">
+    </colgrou>
+
+    {% if parts.get_all_sold %}
+    {% for bid in parts.get_all_sold %}
+    <tr>
+        <td>
+            {{bid.list_date}}
+        </td>
+        <td>
+            <center>
+                ${{bid.price}}
+            </center>
+
+        </td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <tr>
+        <center>
+        <b>Currently No Sales Yet</b>
+        </center>
+    </tr>
+    {% endif %}
+</table>
+
+</center>
+
+{% endblock %}

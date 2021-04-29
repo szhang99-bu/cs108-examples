@@ -1,0 +1,26 @@
+<!-- project.update_an_ask-->
+{% extends 'project/base.html' %}
+
+{% block content %}
+
+<h1>Confirm Your Purchase</h1>
+<center>
+
+<h4>${{ask_info.price}}</h4>
+<b>Here is the seller's contact information:</b><BR>
+{{ask_info.email}}<BR>
+{{ask_info.phone_number}}
+
+<form method ="POST"> <!-- HTTP POST to send data to the server -->
+    {% csrf_token %}
+
+    <table>
+    {{form.as_table}}
+    </table>
+
+        <td><input type="submit" value="Buy"></td>
+
+</form>
+
+</center>
+{% endblock %}

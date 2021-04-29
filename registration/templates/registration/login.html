@@ -1,0 +1,27 @@
+<!-- registration/login.html -->
+
+{% block content %}
+<center>
+<header>
+    <style>
+        body {
+            background-image: url('/media/bg.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</header>
+
+<h1 style="color:rgb(61, 61, 61)">Login To Continue</h1>
+<form method="post">
+
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Login">
+
+</form>
+
+<h4>New User? Register <a href="/registration/register">Here</a>.</h4>
+<a href="/project/">Return to Home Page</a>
+</center>
+{% endblock %}

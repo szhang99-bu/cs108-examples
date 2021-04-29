@@ -1,0 +1,24 @@
+<!-- project.update_a_bid-->
+{% extends 'project/base.html' %}
+
+{% block content %}
+
+<h1>Confirm Your Sell</h1>
+<center>
+<h4>${{bid_info.price}}</h4>
+<b>Here is the buyer's contact information:</b><BR>
+{{bid_info.email}}<BR>
+{{bid_info.phone_number}}
+
+<form method ="POST"> <!-- HTTP POST to send data to the server -->
+    {% csrf_token %}
+
+    <table>
+    {{form.as_table}}
+    </table>
+    <input type="submit" value="Sell">
+
+</form>
+
+</center>
+{% endblock %}
