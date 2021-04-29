@@ -23,6 +23,7 @@
 <!-- create a loop to displate the computer parts that can be traded -->
 {% for part in parts %}
 <tr>
+    <!-- make bothe the name and the picture link to their own page -->
     <td>
         <a href="{% url 'show_computer_part_page' part.pk %}">{{part.name}}</a>
     </td>
@@ -32,6 +33,7 @@
         </center>
     </td>
     <td>
+        <!-- use pre to insure the information displayed in formated correctly -->
         <pre>
 {{part.description}}
         </pre>

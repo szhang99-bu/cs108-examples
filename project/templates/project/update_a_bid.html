@@ -2,9 +2,11 @@
 {% extends 'project/base.html' %}
 
 {% block content %}
-
+<!-- essentually use a conformation page, to update the boolean field so it will not shows up as current bid-->
 <h1>Confirm Your Sell</h1>
+
 <center>
+<!-- indicates the information connecting to this current bid -->
 <h4>${{bid_info.price}}</h4>
 <b>Here is the buyer's contact information:</b><BR>
 {{bid_info.email}}<BR>
@@ -13,7 +15,7 @@
 <form method ="POST"> <!-- HTTP POST to send data to the server -->
     {% csrf_token %}
 
-    <table>
+    <table><!--display the form for updating the boolean - sold feild as a table-->
     {{form.as_table}}
     </table>
     <input type="submit" value="Sell">

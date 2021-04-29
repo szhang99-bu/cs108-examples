@@ -13,7 +13,7 @@ class ComputerParts(models.Model):
     manufacturer = models.TextField(blank=True)
     image = models.ImageField(blank=True)
     description = models.TextField(blank=True)
-    original_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True)
+    original_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True) #always include two decimal place, loop better as money
 
     def __str__(self):
         """
@@ -25,7 +25,7 @@ class ComputerParts(models.Model):
         """
             will obtain and return all the bids for this item
         """
-        
+        #using Q&q to creat a questy set that has two things to evaluate
         bids = Bid.objects.filter(Q(sold=False) & Q(product=self)).order_by("-price")
         return bids
     
@@ -33,7 +33,7 @@ class ComputerParts(models.Model):
         """
             will obtain and return all the bids for this item
         """
-        
+        #using Q&q to creat a questy set that has two things to evaluate
         asks = Ask.objects.filter(Q(sold=False) & Q(product=self)).order_by("price")
         return asks
     
@@ -41,13 +41,15 @@ class ComputerParts(models.Model):
         """
             Getting the higest bid from the query set
         """
+        #using Q&q to creat a questy set that has two things to evaluate, the use first to get the highest
         high_bid = Bid.objects.filter(Q(sold=False) & Q(product=self)).order_by("-price").first()
         return high_bid
     
     def get_lowest_ask(self):
         """
-            Getting the higest bid from the query set
+            Getting the higest ask from the query set
         """
+        #using Q&q to creat a questy set that has two things to evaluate, the use first to get the lowerst
         low_ask = Ask.objects.filter(Q(sold=False) & Q(product=self)).order_by("price").first()
         return low_ask
 
@@ -55,15 +57,13 @@ class ComputerParts(models.Model):
         """
             Getting all recent sold products.
         """
+        #get the sold product form each bid and ask
         bid_sold = Bid.objects.filter(Q(sold=True) & Q(product=self))
         ask_sold = Ask.objects.filter(Q(sold=True) & Q(product=self))
-        total_sale = ask_sold.union(bid_sold)
+
+        total_sale = ask_sold.union(bid_sold) #use a union to connect two different models with the same feild within each
         return total_sale
 
-
-
-
-    
 
 # class User(models.Model):
 #     """
@@ -94,7 +94,7 @@ class Ask(models.Model):
     product = models.ForeignKey(ComputerParts, on_delete = models.CASCADE)
     list_date = models.DateTimeField(auto_now=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, blank=True)
-    sold = models.BooleanField(default=False)
+    sold = models.BooleanField(default=False) #boolean feild that used to determine whethe the product is sold or not
     email = models.TextField(blank=True)
     phone_number = models.TextField(blank=True)
 
@@ -113,7 +113,7 @@ class Bid(models.Model):
     # user = models.ForeignKey(User, on_delete = models.CASCADE)
     list_date = models.DateTimeField(auto_now=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, blank=True)
-    sold = models.BooleanField(default=False)
+    sold = models.BooleanField(default=False)  #boolean feild that used to determine whethe the product is sold or not
     email = models.TextField(blank=True)
     phone_number = models.TextField(blank=True)
 

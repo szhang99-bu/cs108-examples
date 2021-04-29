@@ -3,7 +3,7 @@
 
 {% block content %}
 <center>
-
+<!-- display some basic information regrading to the specific product we are doing-->
 <h1>{{parts.name}}</h1>
 <table width=700>
     <colgrou>
@@ -16,6 +16,7 @@
         </td>
         <td>
             <p>
+                <!-- a more detailed information listing for the product, included pre for better formating -->
             <pre>
 <b>Brand:</b> {{parts.manufacturer}}
 <b>Launch Yeat:</b> {{parts.year}}
@@ -28,6 +29,7 @@
 
 </table>
 </center>
+<!-- empty spcace sperating the two tables -->
 <p>
 
 </p>
@@ -38,6 +40,7 @@
         <col span="1" style="width: 50%;">
         <col span="1" style="width: 50%;">
     </colgrou>
+    <!-- link to the eahc product's make a bid or ask page using the current pk -->
     <tr>
         <td>
             <a href ="{% url 'make_a_bid' parts.pk%}">Make A Bid</a>
@@ -47,6 +50,7 @@
         </td>
     </tr>
 </table>
+<!-- empty space for spacing -->
 <p>
 
 </p>
@@ -63,12 +67,14 @@
     </tr>
     <tr>
         <td>
+            <!-- first check if there is any bid under this product, if exist, shows selling or buying button -->
             {% if parts.get_all_bids %}
             <center>
             <a href ="{% url 'update_a_bid' product_pk=parts.pk bid_pk=parts.get_highest_bid.pk %}">Sell To the Highest Bid</a>
             </center>
             {% endif %}
         </td>
+        <!-- same as before, check to make sure there is something to sell or buy -->
         <td>
             {% if parts.get_all_asks %}
             <center>
@@ -79,13 +85,14 @@
     </tr>
     <tr>
         <td>
-            
+            <!-- chec if there is any bid or product to dispaly, then use custom fuction to get all bids that are not sold-->
                 {% if parts.get_all_bids %}
                 <table width=400>
                     <colgrou>
                         <col span="1" style="width: 50%;">
                         <col span="1" style="width: 50%;">
                     </colgrou>
+                    <!-- use a for look to display all bids-->
                 {% for bid in parts.get_all_bids %}
                 <tr>
                     <td>
@@ -100,6 +107,7 @@
                 </tr>
                 {% endfor %}
                 </table>
+                <!-- if there are no bid, the indicates that to the user-->
                 {% else %}
                     <center>
                     <b>Currently No Bids</b>
@@ -108,7 +116,7 @@
             
         </td>
         <td>
-            
+            <!-- same principle as bids-->
                 {% if parts.get_all_asks %}
                 <table width=400>
                     <colgrou>
@@ -128,6 +136,7 @@
                 </tr>
                 {% endfor %}
                 </table>
+                <!-- if there are no ask, the indicates that to the user-->
                 {% else %}
                     <center>
                         <b>Currently No Asks</b>
@@ -141,15 +150,16 @@
 
 <center>
 
-
+<!-- use a table to display all the sold bid or ask -->
 <h3> All Recent Transactions</h3>
 <table width=800>
     <colgrou>
         <col span="1" style="width: 50%;">
         <col span="1" style="width: 50%;">
     </colgrou>
-
+    <!-- check is there is any sold product yet-->
     {% if parts.get_all_sold %}
+    <!-- if exist, using a for loop to display each one-->
     {% for bid in parts.get_all_sold %}
     <tr>
         <td>
@@ -163,6 +173,7 @@
         </td>
     </tr>
     {% endfor %}
+    <!-- if nothing has sold yet, the indicate that -->
     {% else %}
     <tr>
         <center>

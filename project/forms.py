@@ -77,6 +77,9 @@ class UpdateAskForm(forms.ModelForm):
         fields = ['sold']
     
     def __init__(self, *args, **kwargs):
+        """
+            an init feild overwite the original name sold to - confirm transaction
+        """
         super(UpdateAskForm, self).__init__(*args, **kwargs)
         self.fields['sold'].label = "Confirm Transaction"
 
@@ -93,5 +96,8 @@ class UpdateBidForm(forms.ModelForm):
         fields = ['sold']
 
     def __init__(self, *args, **kwargs):
+        """
+            an init feild overwite the original name sold to - confirm transaction
+        """
         super(UpdateBidForm, self).__init__(*args, **kwargs)
         self.fields['sold'].label = "Confirm Transaction"
